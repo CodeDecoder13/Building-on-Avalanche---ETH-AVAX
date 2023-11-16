@@ -1,41 +1,53 @@
 # Building-on-Avalanche---ETH-AVAX
+# DegenToken
 
-DegenToken
 DegenToken represents an ERC-20 token contract integrating a decentralized marketplace feature. This contract allows the owner to perform essential token operations like minting and burning, alongside facilitating the sale of items using these tokens.
 
-Contract Overview
-Token Name: DegenToken (DGN)
-Standard: ERC-20
-Based on: OpenZeppelin's ERC20 and Ownable contracts
-Key Functions
-Mint
+## Contract Overview
+
+- **Token Name:** DegenToken (DGN)
+- **Standard:** ERC-20
+- **Based on:** OpenZeppelin's ERC20 and Ownable contracts
+
+## Key Functions
+
+### Mint
+
 Enables the owner to create new tokens and allocate them to a specified address.
 
-Function signature: function mint(address to, uint256 amount) public onlyOwner
+Function signature: `function mint(address to, uint256 amount) public onlyOwner`
 
-Burn
+### Burn
+
 Allows any address to destroy a specific amount of their own tokens.
 
-Function signature: function burn(uint256 amount) public
+Function signature: `function burn(uint256 amount) public`
 
-Transfer
+### Transfer
+
 Overrides the standard ERC-20 transfer function to accommodate custom logic.
 
-Function signature: function transfer(address to, uint256 amount) public override returns (bool)
+Function signature: `function transfer(address to, uint256 amount) public override returns (bool)`
 
-Sell Item
+### Sell Item
+
 Empowers the owner to list items for sale by defining their price and quantity.
 
-Function signature: function sellItem(string memory itemName, uint256 price, uint256 quantity) public onlyOwner
+Function signature: `function sellItem(string memory itemName, uint256 price, uint256 quantity) public onlyOwner`
 
-Buy Item
+### Buy Item
+
 Enables any address to purchase items listed by the owner using DegenTokens. The tokens used for the purchase are subsequently burned.
 
-Function signature: function buyItem(string memory itemName, uint256 quantity) public
+Function signature: `function buyItem(string memory itemName, uint256 quantity) public`
 
-Events
-ItemPurchased
+## Events
+
+### ItemPurchased
+
 Emitted when a buyer successfully buys an item.
+
+Event signature: `event ItemPurchased(address indexed buyer, string item, uint256 price, uint256 quantity);`
 
 Event signature: event ItemPurchased(address indexed buyer, string item, uint256 price, uint256 quantity);
 
