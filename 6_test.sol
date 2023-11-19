@@ -17,10 +17,6 @@ contract DegenToken is ERC20, Ownable {
 
     constructor() ERC20("Degen", "DGN") {}
 
-    function mint(address to, uint256 amount) public onlyOwner {
-        _mint(to, amount);
-    }
-
     function burn(uint256 amount) public {
         _burn(msg.sender, amount);
     }
@@ -30,17 +26,11 @@ contract DegenToken is ERC20, Ownable {
         return true;
     }
 
-    function sellItem(string memory itemName, uint256 price, uint256 quantity) public onlyOwner {
-        require(price > 0, "Price must be greater than zero");
-        require(quantity > 0, "Quantity must be greater than zero");
-
-        Item storage newItem = items[itemName];
-        newItem.name = itemName;
-        newItem.price = price;
-        newItem.quantity = quantity;
+     function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
     }
 
-    function buyItem(string memory itemName, uint256 quantity) public {
+       function buyItem(string memory itemName, uint256 quantity) public {
         require(quantity > 0, "Quantity must be greater than zero");
 
         Item storage item = items[itemName];
@@ -54,4 +44,16 @@ contract DegenToken is ERC20, Ownable {
 
         emit ItemPurchased(msg.sender, itemName, item.price, quantity);
     }
+
+    function sellItem(string memory itemName, uint256 price, uint256 quantity) public onlyOwner {
+        require(price > 0, "Price must be greater than zero");
+        require(quantity > 0, "Quantity must be greater than zero");
+
+        Item storage newItem = items[itemName];
+        newItem.name = itemName;
+        newItem.price = price;
+        newItem.quantity = quantity;
+    }
+
+ 
 }
